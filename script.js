@@ -1,12 +1,37 @@
 // Globale Variable zur Speicherung der Auswahl
-const notrufDaten = {};
+let notrufDaten = {}; // Geändert von const auf let, damit wir es komplett leeren können
 let aktuellerSchritt = 1;
+
+// Hilfsfunktion für eine nicht-blockierende Nachricht
+function zeigeFeedback(nachricht) {
+    // Erstelle ein temporäres Div-Element
+    const toast = document.createElement('div');
+    toast.textContent = nachricht;
+    
+    // Einfaches Styling direkt via JS (oder du nutzt eine CSS-Klasse)
+    Object.assign(toast.style, {
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        padding: '16px',
+        borderRadius: '5px',
+        zIndex: '1000',
+        boxShadow: '0px 4px 6px rgba(0,0,0,0.1)'
+    });
+
+    document.body.appendChild(toast);
+
+    // Nach 3 Sekunden wird die Meldung automatisch entfernt
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
 
 /**
  * Funktion zum Wechseln der Abfrageschritte.
- * @param {number} naechsterSchritt - Die ID des nächsten anzuzeigenden Schritts.
- * @param {string} schluessel - Der Schlüssel für die Daten (z.B. 'Alarmstufe').
- * @param {string} wert - Der Wert der Button-Auswahl (z.B. 'Herz-Kreislauf').
  */
 function weiterZuSchritt(naechsterSchritt, schluessel, wert) {
     if (schluessel && wert) {
@@ -22,12 +47,12 @@ function weiterZuSchritt(naechsterSchritt, schluessel, wert) {
         // Bereite die Anzeige der Ergebnisse vor
         document.getElementById('ergebnis-daten').textContent = JSON.stringify(notrufDaten, null, 2);
         document.getElementById('schritt4').classList.remove('hidden');
-
-        // Optional: Hier könntest du direkt die DB-Speicherung starten (s.u.)
-        // datenbankSpeichern();
+        
+        // Wichtig, damit wir im Ergebnis-Schritt wissen, wo wir sind
+        aktuellerSchritt = 4; 
 
     } else if (naechsterSchritt > aktuellerSchritt) {
-        // Update die Anzeige für den nächsten Schritt (z.B. 'Auswahl von Schritt 1: Herz-Kreislauf')
+        // Update die Anzeige für den nächsten Schritt
         if (naechsterSchritt === 3) {
             document.getElementById('auswahl2').textContent = notrufDaten['Detail'];
         } else if (naechsterSchritt === 2) {
@@ -41,27 +66,48 @@ function weiterZuSchritt(naechsterSchritt, schluessel, wert) {
 }
 
 /**
- * Funktion zur Speicherung der Daten in die SQL-Datenbank (Backend-Anbindung erforderlich!).
+ * NEU: Funktion zum Zurücksetzen des Skripts in den Anfangszustand
+ */
+function resetNotruf() {
+    // 1. Blende den aktuell sichtbaren Schritt aus
+    document.getElementById(`schritt${aktuellerSchritt}`).classList.add('hidden');
+    
+    // 2. Daten leeren und Schritt-Zähler zurücksetzen
+    notrufDaten = {};
+    aktuellerSchritt = 1;
+    
+    // 3. Optionale Textfelder in der UI leeren (damit beim nächsten Durchlauf alte Daten weg sind)
+    if(document.getElementById('auswahl1')) document.getElementById('auswahl1').textContent = '';
+    if(document.getElementById('auswahl2')) document.getElementById('auswahl2').textContent = '';
+    if(document.getElementById('ergebnis-daten')) document.getElementById('ergebnis-daten').textContent = '';
+
+    // 4. Schritt 1 wieder einblenden
+    document.getElementById('schritt1').classList.remove('hidden');
+    
+    console.log('Skript erfolgreich in den Anfangszustand zurückgesetzt.');
+}
+
+/**
+ * Funktion zur Speicherung der Daten in die SQL-Datenbank.
  */
 function datenbankSpeichern() {
     console.log('Sende Daten an das Backend zur SQL-Speicherung:', notrufDaten);
 
-    // *************************************************************************
-    // ** WICHTIG: Dieser Teil erfordert ein BACKEND (PHP, Python etc.) **
-    // *************************************************************************
-
-    // Führe eine HTTP-Anfrage (Fetch API) an dein Backend-Skript durch
     fetch('speichere_notruf.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(notrufDaten), // Die gesammelten Daten werden als JSON gesendet
+        body: JSON.stringify(notrufDaten),
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Daten erfolgreich in der SQL-Datenbank gespeichert!');
+            zeigeFeedback('Daten erfolgreich gespeichert!');
+            
+            // AUTOMATISCHER RESET: Nach erfolgreichem Speichern zurück zum Start
+            resetNotruf();
+            
         } else {
             alert('FEHLER beim Speichern: ' + data.message);
         }
