@@ -8,8 +8,8 @@ header('Content-Type: application/json');
 // ------------------------------------
 $host = 'localhost';
 $db   = 'opensnadb'; // Beispiel: 'notruf_db'
-$user = 'opensna';    // Beispiel: 'notruf_user'
-$pass = 'opensna#23+';        // Beispiel: 'SicheresPasswort123'
+$user = 'DEIN_USER';    // Beispiel: 'notruf_user'
+$pass = 'DEIN_PASSWORT';        // Beispiel: 'SicheresPasswort123'
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
