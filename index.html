@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standardisierte Notrufabfrage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-container">
+        <h1>Standardisierte Notrufabfrage</h1>
+
+        <div id="schritt1" class="abfrage-schritt">
+            <h2>1. Betroffene Person (Alarmstufe)</h2>
+            <button onclick="weiterZuSchritt(2, 'Alarmstufe', 'Herz-Kreislauf')">Herz-Kreislauf-Stillstand</button>
+            <button onclick="weiterZuSchritt(2, 'Alarmstufe', 'Schwere Verletzung')">Schwere Verletzung</button>
+            <button onclick="weiterZuSchritt(2, 'Alarmstufe', 'Atemnot')">Starke Atemnot</button>
+            </div>
+
+        <div id="schritt2" class="abfrage-schritt hidden">
+            <h2>2. Symptom-Details (Zusatzinformation)</h2>
+            <p>**Auswahl von Schritt 1:** <span id="auswahl1"></span></p>
+            <button onclick="weiterZuSchritt(3, 'Detail', 'Blutend')">Stark Blutend</button>
+            <button onclick="weiterZuSchritt(3, 'Detail', 'Orientiert')">Orientiert/Ansprechbar</button>
+            <button onclick="weiterZuSchritt(3, 'Detail', 'Kopfschmerz')">Starke Kopfschmerzen</button>
+            </div>
+
+        <div id="schritt3" class="abfrage-schritt hidden">
+            <h2>3. Standort (Priorität)</h2>
+            <p>**Auswahl von Schritt 2:** <span id="auswahl2"></span></p>
+            <button onclick="weiterZuSchritt(4, 'Standort', 'Öffentlich')">Öffentlicher Ort</button>
+            <button onclick="weiterZuSchritt(4, 'Standort', 'Zuhause')">Privathaushalt</button>
+            <button onclick="weiterZuSchritt(4, 'Standort', 'Unterwegs')">Unterwegs/Verkehr</button>
+            </div>
+
+        <div id="schritt4" class="abfrage-schritt hidden">
+            <h2>Ergebnisübersicht</h2>
+            <p>Die Abfrage ist abgeschlossen. Die gesammelten Daten werden nun an die Datenbank gesendet.</p>
+            <pre id="ergebnis-daten"></pre>
+            <button onclick="datenbankSpeichern()">Daten an SQL senden</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
