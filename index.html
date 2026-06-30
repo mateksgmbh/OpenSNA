@@ -3,46 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standardisierte Notrufabfrage</title>
-    <link rel="stylesheet" href="style.css">
+    <title>OpenSNA - Standardisierte Notrufabfrage</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* BOS-spezifische Farbpalette */
+        :root {
+            --bos-blue: #1C2D42;
+            --bos-red: #D32F2F;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
 
-    <div id="app-container">
-        <h1>Standardisierte Notrufabfrage</h1>
-
-        <div id="schritt1" class="abfrage-schritt">
-            <h2>1. Betroffene Person (Alarmstufe)</h2>
-            <button onclick="weiterZuSchritt(2, 'Alarmstufe', 'Herz-Kreislauf')">Herz-Kreislauf-Stillstand</button>
-            <button onclick="weiterZuSchritt(2, 'Alarmstufe', 'Schwere Verletzung')">Schwere Verletzung</button>
-            <button onclick="weiterZuSchritt(2, 'Alarmstufe', 'Atemnot')">Starke Atemnot</button>
-            </div>
-
-        <div id="schritt2" class="abfrage-schritt hidden">
-            <h2>2. Symptom-Details (Zusatzinformation)</h2>
-            <p>**Auswahl von Schritt 1:** <span id="auswahl1"></span></p>
-            <button onclick="weiterZuSchritt(3, 'Detail', 'Blutend')">Stark Blutend</button>
-            <button onclick="weiterZuSchritt(3, 'Detail', 'Orientiert')">Orientiert/Ansprechbar</button>
-            <button onclick="weiterZuSchritt(3, 'Detail', 'Kopfschmerz')">Starke Kopfschmerzen</button>
-            </div>
-
-        <div id="schritt3" class="abfrage-schritt hidden">
-            <h2>3. Standort (Priorität)</h2>
-            <p>**Auswahl von Schritt 2:** <span id="auswahl2"></span></p>
-            <button onclick="weiterZuSchritt(4, 'Standort', 'Öffentlich')">Öffentlicher Ort</button>
-            <button onclick="weiterZuSchritt(4, 'Standort', 'Zuhause')">Privathaushalt</button>
-            <button onclick="weiterZuSchritt(4, 'Standort', 'Unterwegs')">Unterwegs/Verkehr</button>
-            </div>
-
-        <div id="schritt4" class="abfrage-schritt hidden">
-            <h2>Ergebnisübersicht</h2>
-            <p>Die Abfrage ist abgeschlossen. Die gesammelten Daten werden nun an die Datenbank gesendet.</p>
-            <pre id="ergebnis-daten"></pre>
-            <button onclick="datenbankSpeichern()">Daten an SQL senden</button>
+    <header class="bg-[#1C2D42] text-white px-6 py-4 flex justify-between items-center shadow-md">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-bold tracking-wider text-red-500">Open<span class="text-white">SNA</span></span>
+            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-gray-300">v0.8.9</span>
         </div>
+        <div class="flex items-center space-x-2 text-sm bg-slate-800 px-3 py-1.5 rounded-full border border-green-500/30">
+            <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span class="text-green-400 font-medium">System einsatzbereit</span>
+        </div>
+    </header>
 
-    </div>
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-4xl w-full text-center">
+            
+            <span class="text-xs font-bold uppercase tracking-widest text-[#D32F2F] bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                Behörden-Werkzeug für Leitstellen
+            </span>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#1C2D42] mt-6 tracking-tight leading-tight">
+                Standardisierte Notrufabfrage.<br>
+                <span class="text-[#D32F2F]">Sekundenschnell. Rechtssicher.</span>
+            </h1>
+            
+            <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                OpenSNA unterstützt Disponenten bei der strukturierten und qualifizierten Abfrage von medizinischen und feuerwehrspezifischen Notrufen. Intuitiv im Einsatz, präzise in der Dokumentation.
+            </p>
 
-    <script src="script.js"></script>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="sna.html" class="w-full sm:w-auto bg-[#D32F2F] hover:bg-red-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition duration-200 transform hover:-translate-y-0.5 text-center">
+                    🚑 Neue Abfrage starten
+                </a>
+                <a href="auswertung.php" class="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#1C2D42] font-semibold text-lg px-8 py-4 rounded-lg border border-gray-300 transition duration-200 text-center">
+                  📊 Dokumentation öffnen
+                </a>
+                <a href="features.html" class="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#1C2D42] font-semibold text-lg px-8 py-4 rounded-lg border border-gray-300 transition duration-200 text-center">
+                  🔎 Features erkunden
+                </a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left border-t border-gray-200 pt-12">
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-100">
+                    <div class="text-2xl mb-2">⚡</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">Dynamische Führung</h3>
+                    <p class="text-gray-600 text-sm mt-1">Algorithmen passen sich den Antworten des Anrufers in Echtzeit an.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-100">
+                    <div class="text-2xl mb-2">🛡️</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">Rechtssicherheit</h3>
+                    <p class="text-gray-600 text-sm mt-1">Lückenlose Protokollierung aller getroffenen Entscheidungen für die SQL-Datenbank.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-100">
+                    <div class="text-2xl mb-2">🔒</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">BOS Datenschutz</h3>
+                    <p class="text-gray-600 text-sm mt-1">100% On-Premise-fähig. Keine externen Datenflüsse oder Drittanbieter-Server.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 border-t border-gray-200 text-xs text-gray-500 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div>
+            &copy; 2026 <strong>OpenSNA</strong> — Entwickelt für Feuerwehr, Rettungsdienst und Polizei.
+        </div>
+        <div class="flex space-x-4">
+            <a href="#" class="hover:underline">Impressum</a>
+            <a href="#" class="hover:underline">Datenschutz (DSGVO)</a>
+            <a href="#" class="hover:underline">Leitstellen-Schnittstelle (API)</a>
+        </div>
+    </footer>
+
 </body>
 </html>

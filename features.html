@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSNA - Leistungsspektrum & Features</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="m-0 p-0 bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+
+    <header class="w-full bg-[#1C2D42] text-white px-6 py-4 flex justify-between items-center shadow-md box-border">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-bold tracking-wider text-red-500">Open<span class="text-white">SNA</span></span>
+            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-gray-300">Features</span>
+        </div>
+        <a href="index.html" class="text-sm bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-gray-200 border border-slate-600 transition">
+            ← Hauptmenü
+        </a>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-[#D32F2F] bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                Architektur & Leistungsspektrum
+            </span>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-[#1C2D42] mt-4 tracking-tight">
+                Die Plattform für die Leitstelle von morgen
+            </h1>
+            <p class="mt-4 text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                OpenSNA kombiniert medizinische Präzision mit modernster Softwarearchitektur. Entwickelt, um unter Höchstdruck maximale Entlastung und Rechtssicherheit zu garantieren.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+                <div>
+                    <div class="h-12 w-12 rounded-lg bg-slate-100 flex items-center justify-center text-2xl mb-5">🏢</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">Strikte Mandantentrennung</h3>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Prädestiniert für den Einsatz in großen Zweckverbänden oder landesweiten Strukturen. Daten, Protokolle und Nutzerrechte bleiben pro Kreis oder Stadt autark und sicher voneinander getrennt.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-slate-400">Verbund- & Großleitstellen</div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+                <div>
+                    <div class="h-12 w-12 rounded-lg bg-slate-100 flex items-center justify-center text-2xl mb-5">🧩</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">Modulare Erweiterbarkeit</h3>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Jede Leitstelle arbeitet anders. OpenSNA lässt sich flexibel erweitern. Neue Abfragebäume, länderspezifische Besonderheiten oder neue Alarmierungsstichworte können via Admin-Interface im laufenden Betrieb integriert werden.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-slate-400">100% Flexibel</div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+                <div>
+                    <div class="h-12 w-12 rounded-lg bg-slate-100 flex items-center justify-center text-2xl mb-5">🔄</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">ELS-Schnittstellen (API)</h3>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Keine lästige Doppelarbeit für Disponenten. Über REST-APIs und standardisierte Webhooks übergibt OpenSNA die ermittelte Alarmstufe und alle Notruf-Details in Echtzeit direkt an dein bestehendes Einsatzleitsystem.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-slate-400">System-Integration</div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+                <div>
+                    <div class="h-12 w-12 rounded-lg bg-slate-100 flex items-center justify-center text-2xl mb-5">📊</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">Individuelle Auswertungsmodule</h3>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Umfangreiche Analytics für das Qualitätsmanagement (QM). Generiere datenbasierte Berichte über Abfragezeiten, Häufigkeiten von Meldebildern und die Effizienz einzelner Abfragepfade – vollautomatisch und DSGVO-konform.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-slate-400">Qualitätsmanagement</div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-xs flex flex-col justify-between hover:shadow-md transition md:col-span-2 lg:col-span-1">
+                <div>
+                    <div class="h-12 w-12 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center text-2xl mb-5">⚡</div>
+                    <h3 class="text-lg font-bold text-[#1C2D42]">Automatisierte Auswahlpfade</h3>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Wenn jede Sekunde zählt: Bei kritischen Stichworten (z.B. Reanimation) überspringt das System dank intelligenter Heuristiken redundante Zwischenschritte. Der Disponent wird sofort zu den lebensrettenden Erste-Hilfe-Hinweisen geführt.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-red-100 text-xs font-semibold text-[#D32F2F]">High-Speed-Modus</div>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center bg-[#1C2D42] text-white p-8 rounded-2xl shadow-lg">
+            <h2 class="text-xl font-bold">Bereit für den Realeinsatz?</h2>
+            <p class="text-sm text-gray-300 mt-2 max-w-xl mx-auto">Überzeuge dich selbst von der einfachen und strukturierten Führung des Abfragesystems.</p>
+            <div class="mt-6">
+                <a href="sna.html" class="inline-block bg-[#D32F2F] hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg shadow-md transition">
+                    Direkt zum Abfrage-Tool
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-100 border-t border-gray-200 text-xs text-gray-500 px-6 py-4 text-center mt-12">
+        OpenSNA &bull; Technologie für Behörden und Organisationen mit Sicherheitsaufgaben (BOS)
+    </footer>
+
+</body>
+</html>
