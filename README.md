@@ -51,16 +51,20 @@ CREATE TABLE notrufabfragen (
     standort VARCHAR(255) DEFAULT NULL,
     erfassungszeit TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
+```
 
 3. Repository klonen & Konfigurieren
     1. Klone dieses Repository in dein Web-Verzeichnis (htdocs / www).
 
     2. Passe die Datenbank-Zugangsdaten in der speichere_notruf.php sowie der auswertung.php an:
-
+    ```php
+    <?php
     $host = 'localhost';
     $dbname = 'opensnadb';
     $user = 'DEIN_USER';
     $password = 'DEIN_PASSWORT';
+    ?>
+    ```
 
 4.  🔒 Rechtssicherheit & Compliance
 Im BOS-Bereich (Behörden und Organisationen mit Sicherheitsaufgaben) sind Datenschutz und Nachweisbarkeit essenziell. OpenSNA speichert jeden Abfrageschritt mit exaktem Zeitstempel. Jede Eingabe wird serverseitig vor der SQL-Injektion geschützt (Prepared Statements) und im Auswertungsportal gegen Cross-Site-Scripting (XSS) maskiert.
